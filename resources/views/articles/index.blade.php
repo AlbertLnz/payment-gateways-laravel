@@ -22,6 +22,10 @@
       @endforeach
     </div>
 
+    <div class="py-8">
+      {{ $articles->links() }}
+    </div>
+
   </x-container>
 
 </x-app-layout>
