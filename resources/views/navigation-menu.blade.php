@@ -2,9 +2,9 @@
     
     $links = [
         [
-            'name' => 'Dashboard',
-            'url' => route('dashboard'),
-            'active' => request()->routeIs('dashboard')
+            'name' => 'HomePage',
+            'url' => '/',
+            'active' => false
         ],
     ];
 
@@ -17,7 +17,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="/">
                         <x-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
