@@ -3,8 +3,8 @@
     $links = [
         [
             'name' => 'HomePage',
-            'url' => '/',
-            'active' => false
+            'url' => route('web.home'),
+            'active' => request()->routeIs('web.home')
         ],
     ];
 
