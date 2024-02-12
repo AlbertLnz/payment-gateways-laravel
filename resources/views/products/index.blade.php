@@ -26,6 +26,10 @@
 
     </div>
 
+    <div class="py-8">
+      {{ $products->links() }}
+    </div>
+
   </x-container>
 
 </x-app-layout>
