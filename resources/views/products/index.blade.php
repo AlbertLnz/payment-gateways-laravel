@@ -1,6 +1,6 @@
 <x-app-layout>
 
-  <x-container>
+  <x-container class="py-10">
     HOLA
   </x-container>
 
