@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->string('title');
             $table->string('image');
-            $table->text('description');
+            $table->text('extract');
             $table->longText('body');
 
             $table->timestamps();
