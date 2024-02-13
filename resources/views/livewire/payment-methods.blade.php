@@ -48,9 +48,15 @@
                 <!-- PaymentMethod Object Stripe API -->
                 @foreach ($paymentMethods as $paymentMethod)
                     
-                    <li class="py-2">
-                        <p><span class="font-semibold">{{ $paymentMethod->billing_details->name }}</span> - {{ $paymentMethod->card->brand }}: xxxx-{{ $paymentMethod->card->last4 }} </p>                        
-                        <p>Expira: {{ $paymentMethod->card->exp_month }}/{{ $paymentMethod->card->exp_year }}</p>
+                    <li class="py-2 flex justify-between">
+                        <div>
+                            <p><span class="font-semibold">{{ $paymentMethod->billing_details->name }}</span> - {{ $paymentMethod->card->brand }}: xxxx-{{ $paymentMethod->card->last4 }} </p>                        
+                            <p>Expira: {{ $paymentMethod->card->exp_month }}/{{ $paymentMethod->card->exp_year }}</p>
+                        </div>
+
+                        <button class="mr-4 disabled:opacity-25" wire:click="deletePaymentMethod('{{ $paymentMethod->id }}')" wire:target="deletePaymentMethod('{{ $paymentMethod->id }}')" wire:loading.attr="disabled">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
                     </li>
 
                 @endforeach
