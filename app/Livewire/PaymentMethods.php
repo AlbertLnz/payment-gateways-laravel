@@ -12,10 +12,19 @@ class PaymentMethods extends Component
         return auth()->user()->defaultPaymentMethod();
     }
 
-    public function addPaymentMethod($paymentMethod) {
+    public function addPaymentMethod($paymentMethodId) {
 
-        auth()->user()->addPaymentMethod($paymentMethod);
+        auth()->user()->addPaymentMethod($paymentMethodId);
 
+        // return true when I DON'T HAVE a default payment method. I don't know why...
+        // if (!auth()->user()->hasDefaultPaymentMethod()) {
+
+        //     auth()->user()->updateDefaultPaymentMethod($paymentMethodId);
+
+        // }
+
+        // ALTERNATIVE --> The new payment Method, converts to the default
+        auth()->user()->updateDefaultPaymentMethod($paymentMethodId);
     }
 
     public function deletePaymentMethod($paymentMethodId) {

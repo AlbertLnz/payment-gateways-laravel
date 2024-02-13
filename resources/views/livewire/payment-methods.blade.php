@@ -63,13 +63,13 @@
                     <!-- PaymentMethod Object Stripe API -->
                     @foreach ($paymentMethods as $paymentMethod)
                         
-                        <li class="py-2 flex justify-between">
+                        <li class="py-2 flex justify-between" wire:key="{{ $paymentMethod->id }}">
                             <div>
                                 <p>
                                     <span class="font-semibold">{{ $paymentMethod->billing_details->name }}</span>
                                      - {{ $paymentMethod->card->brand }}: xxxx-{{ $paymentMethod->card->last4 }}
                                 
-                                    @if ($this->defaultPaymentMethod->id === $paymentMethod->id)
+                                    @if ($this->defaultPaymentMethod->id == $paymentMethod->id)
                                         
                                         <span class="ml-2 bg-green-200 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Predeterminado</span>
 
@@ -80,7 +80,7 @@
                                 <p>Expira: {{ $paymentMethod->card->exp_month }}/{{ $paymentMethod->card->exp_year }}</p>
                             </div>
 
-                            @if ($this->defaultPaymentMethod->id !== $paymentMethod->id)
+                            @if ($this->defaultPaymentMethod->id != $paymentMethod->id)
                                 
                                 <div class="flex space-x-4 mr-4">
                                     <button class="disabled:opacity-25" wire:click="defaultPaymentMethod('{{ $paymentMethod->id }}')" wire:target="defaultPaymentMethod('{{ $paymentMethod->id }}')" wire:loading.attr="disabled">
