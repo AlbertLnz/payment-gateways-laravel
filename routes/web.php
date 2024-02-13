@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\BillingController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ProductController::class, 'index'])->name('web.home');
 
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+
+Route::get('/billing', [BillingController::class, 'index'])->name('billing.index');
 
 // Route::middleware([
 //     'auth:sanctum',
