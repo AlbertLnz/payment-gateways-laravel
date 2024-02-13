@@ -84,8 +84,11 @@
                     // The card has been verified successfully...
 
                     // console.log(setupIntent.payment_method)
-                    // @this.addPaymentMethod(setupIntent.payment_method)
+                    @this.addPaymentMethod(setupIntent.payment_method)
                                         
+                    // Clean form
+                    cardHolderName.value = ''
+                    cardElement.clear()
 
                     // Button disabled -> false
                     cardButton.disabled = false
