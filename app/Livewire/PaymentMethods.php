@@ -20,6 +20,14 @@ class PaymentMethods extends Component
         auth()->user()->deletePaymentMethod($paymentMethodId);
     }
 
+    public function defaultPaymentMethod($paymentMethodId) {
+
+        // dd($paymentMethodId);
+
+        auth()->user()->updateDefaultPaymentMethod($paymentMethodId);
+
+    }
+
 
     public function render()
     {

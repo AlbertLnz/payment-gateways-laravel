@@ -65,13 +65,30 @@
                         
                         <li class="py-2 flex justify-between">
                             <div>
-                                <p><span class="font-semibold">{{ $paymentMethod->billing_details->name }}</span> - {{ $paymentMethod->card->brand }}: xxxx-{{ $paymentMethod->card->last4 }} </p>                        
+                                <p>
+                                    <span class="font-semibold">{{ $paymentMethod->billing_details->name }}</span>
+                                     - {{ $paymentMethod->card->brand }}: xxxx-{{ $paymentMethod->card->last4 }}
+                                
+                                    @if (auth()->user()->defaultPaymentMethod()->id === $paymentMethod->id)
+                                        
+                                        <span class="ml-2 bg-green-200 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Predeterminado</span>
+
+                                    @endif
+
+                                </p>
+
                                 <p>Expira: {{ $paymentMethod->card->exp_month }}/{{ $paymentMethod->card->exp_year }}</p>
                             </div>
 
-                            <button class="mr-4 disabled:opacity-25" wire:click="deletePaymentMethod('{{ $paymentMethod->id }}')" wire:target="deletePaymentMethod('{{ $paymentMethod->id }}')" wire:loading.attr="disabled">
-                                <i class="fa-regular fa-trash-can"></i>
-                            </button>
+                            <div class="flex space-x-4 mr-4">
+                                <button class="disabled:opacity-25" wire:click="defaultPaymentMethod('{{ $paymentMethod->id }}')" wire:target="defaultPaymentMethod('{{ $paymentMethod->id }}')" wire:loading.attr="disabled">
+                                    <i class="fa-regular fa-star"></i>
+                                </button>
+    
+                                <button class="disabled:opacity-25" wire:click="deletePaymentMethod('{{ $paymentMethod->id }}')" wire:target="deletePaymentMethod('{{ $paymentMethod->id }}')" wire:loading.attr="disabled">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </button>
+                            </div>
                         </li>
 
                     @endforeach
