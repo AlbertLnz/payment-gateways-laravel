@@ -37,34 +37,38 @@
 
     </section>
 
-    <section class="bg-white rounded shadow-lg mt-12">
-        <header class="px-8 py-6 bg-gray-50 border-b border-gray-200">
-            <h1 class="text-gray-700 text-lg font-semibold">Métodos de pago agregados</h1>
-        </header>
+    @if (count($paymentMethods))
+        
+        <section class="bg-white rounded shadow-lg mt-12">
+            <header class="px-8 py-6 bg-gray-50 border-b border-gray-200">
+                <h1 class="text-gray-700 text-lg font-semibold">Métodos de pago agregados</h1>
+            </header>
 
-        <div class="px-8 py-6">
+            <div class="px-8 py-6">
 
-            <ul class="divide-y divide-gray-200">
-                <!-- PaymentMethod Object Stripe API -->
-                @foreach ($paymentMethods as $paymentMethod)
-                    
-                    <li class="py-2 flex justify-between">
-                        <div>
-                            <p><span class="font-semibold">{{ $paymentMethod->billing_details->name }}</span> - {{ $paymentMethod->card->brand }}: xxxx-{{ $paymentMethod->card->last4 }} </p>                        
-                            <p>Expira: {{ $paymentMethod->card->exp_month }}/{{ $paymentMethod->card->exp_year }}</p>
-                        </div>
+                <ul class="divide-y divide-gray-200">
+                    <!-- PaymentMethod Object Stripe API -->
+                    @foreach ($paymentMethods as $paymentMethod)
+                        
+                        <li class="py-2 flex justify-between">
+                            <div>
+                                <p><span class="font-semibold">{{ $paymentMethod->billing_details->name }}</span> - {{ $paymentMethod->card->brand }}: xxxx-{{ $paymentMethod->card->last4 }} </p>                        
+                                <p>Expira: {{ $paymentMethod->card->exp_month }}/{{ $paymentMethod->card->exp_year }}</p>
+                            </div>
 
-                        <button class="mr-4 disabled:opacity-25" wire:click="deletePaymentMethod('{{ $paymentMethod->id }}')" wire:target="deletePaymentMethod('{{ $paymentMethod->id }}')" wire:loading.attr="disabled">
-                            <i class="fa-regular fa-trash-can"></i>
-                        </button>
-                    </li>
+                            <button class="mr-4 disabled:opacity-25" wire:click="deletePaymentMethod('{{ $paymentMethod->id }}')" wire:target="deletePaymentMethod('{{ $paymentMethod->id }}')" wire:loading.attr="disabled">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                        </li>
 
-                @endforeach
-            </ul>
+                    @endforeach
+                </ul>
 
-        </div>
+            </div>
 
-    </section>
+        </section>
+
+    @endif
 
     <!-- push to Stack JS  -->
     @push('js')
