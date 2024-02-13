@@ -3,7 +3,7 @@
     <div class="bg-white rounded shadow-lg">
         <div class="px-8 py-6">
 
-            <input id="card-holder-name" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+            <input id="card-holder-name" class="form-control">
  
             <!-- Stripe Elements Placeholder -->
             <div id="card-element"></div>
