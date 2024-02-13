@@ -63,7 +63,7 @@
                         </li>
                     </ul>
 
-                    <x-button wire:click="newSubscription('price_1OjPaXC1gEKeiBoQ4CndZvpQ')">
+                    <x-button wire:click="newSubscription('price_1OjPaXC1gEKeiBoQ4CndZvpQ')" wire:target="newSubscription('price_1OjPaXC1gEKeiBoQ4CndZvpQ')" wire:loading.attr="disabled">
                         
                         <div class="justify-center" wire:target="newSubscription('price_1OjPaXC1gEKeiBoQ4CndZvpQ')" wire:loading>
                         
