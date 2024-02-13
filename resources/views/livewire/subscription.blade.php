@@ -23,7 +23,7 @@
                         </li>
                     </ul>
 
-                    <x-button>Suscribirse</x-button>
+                    <x-button wire:click="newSubscription('price_1OjPZXC1gEKeiBoQR6tzFG81')">Suscribirse</x-button>
 
                 </div>
                 <!-- Pricing Card -->
@@ -43,7 +43,7 @@
                         </li>
                     </ul>
 
-                    <x-button>Suscribirse</x-button>
+                    <x-button wire:click="newSubscription('price_1OjPa3C1gEKeiBoQrc7V1ayY')">Suscribirse</x-button>
 
                 </div>
                 <!-- Pricing Card -->
@@ -63,7 +63,7 @@
                         </li>
                     </ul>
 
-                    <x-button>Suscribirse</x-button>
+                    <x-button wire:click="newSubscription('price_1OjPaXC1gEKeiBoQ4CndZvpQ')">Suscribirse</x-button>
 
                 </div>
             </div>
