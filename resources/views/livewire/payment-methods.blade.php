@@ -69,7 +69,7 @@
                                     <span class="font-semibold">{{ $paymentMethod->billing_details->name }}</span>
                                      - {{ $paymentMethod->card->brand }}: xxxx-{{ $paymentMethod->card->last4 }}
                                 
-                                    @if (auth()->user()->defaultPaymentMethod()->id === $paymentMethod->id)
+                                    @if ($this->defaultPaymentMethod->id === $paymentMethod->id)
                                         
                                         <span class="ml-2 bg-green-200 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Predeterminado</span>
 
