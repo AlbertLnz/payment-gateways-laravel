@@ -57,6 +57,10 @@
             const clientSecret = cardButton.dataset.secret;
             
             cardButton.addEventListener('click', async (e) => {
+
+                // Button disabled -> true
+                cardButton.disabled = true
+
                 const { setupIntent, error } = await stripe.confirmCardSetup(
                     clientSecret, {
                         payment_method: {
@@ -73,11 +77,18 @@
                     let span = document.getElementById('card-error-message')
                     span.textContent = error.message
 
+                    // Button disabled -> false
+                    cardButton.disabled = false
+
                 } else {
                     // The card has been verified successfully...
 
-                    console.log(setupIntent.payment_method)
-                    @this.addPaymentMethod(setupIntent.payment_method)
+                    // console.log(setupIntent.payment_method)
+                    // @this.addPaymentMethod(setupIntent.payment_method)
+                                        
+
+                    // Button disabled -> false
+                    cardButton.disabled = false
                 }
             });
         </script>
