@@ -16,7 +16,8 @@ class PaymentMethods extends Component
     public function render()
     {
         return view('livewire.payment-methods', [
-            'intent' => auth()->user()->createSetupIntent()
+            'intent' => auth()->user()->createSetupIntent(),
+            'paymentMethods' => auth()->user()->paymentMethods()
         ]);
     }
 }
