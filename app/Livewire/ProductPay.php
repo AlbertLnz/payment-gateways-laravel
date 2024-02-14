@@ -48,7 +48,10 @@ class ProductPay extends Component
 
         auth()->user()->addPaymentMethod($paymentMethodId);
         auth()->user()->updateDefaultPaymentMethod($paymentMethodId);
-        
+
+        $this->paymentMethodSelected = $paymentMethodId; // <-- To ensure that the inserted, will be the selected
+        $this->purchase(); // <-------------------------------- And realize the buy automatically
+        return redirect()->route('thanks'); // <--------------- And redirect to thanks page
     }
 
     public function render()
