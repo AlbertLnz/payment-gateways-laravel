@@ -52,6 +52,12 @@ class Subscription extends Component
 
     }
 
+    public function resumeSubscription() {
+
+        auth()->user()->subscription('Suscripciones blog')->resume();
+
+    }
+
 
     public function render()
     {

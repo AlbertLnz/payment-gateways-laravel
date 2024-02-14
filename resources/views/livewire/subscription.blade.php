@@ -98,18 +98,39 @@
 
                     @if (auth()->user()->subscribedToPrice('price_1OjPaXC1gEKeiBoQ4CndZvpQ', 'Suscripciones blog'))
 
-                        <x-danger-button wire:click="cancelSubscription" wire:target="cancelSubscription" wire:loading.attr="disabled">
 
-                            <div class="justify-center" wire:target="cancelSubscription" wire:loading>
+                        @if (auth()->user()->subscription('Suscripciones blog')->onGracePeriod()) <!-- Grace period -->
                             
-                                <!-- Spinner -->
-                                <x-spinner size="4"/>
+                            <x-secondary-button wire:click="resumeSubscription" wire:target="resumeSubscription" wire:loading.attr="disabled">
+                                
+                                <div class="justify-center" wire:target="resumeSubscription" wire:loading>
+                                
+                                    <!-- Spinner -->
+                                    <x-spinner size="4"/>
+                                
+                                </div>
+
+                                Reanudar
+                            </x-secondary-button>
+
+                        @else
                             
-                            </div>  
+                            <x-danger-button wire:click="cancelSubscription" wire:target="cancelSubscription" wire:loading.attr="disabled">
 
-                            Cancelar
+                                <div class="justify-center" wire:target="cancelSubscription" wire:loading>
+                                
+                                    <!-- Spinner -->
+                                    <x-spinner size="4"/>
+                                
+                                </div>  
 
-                        </x-danger-button>
+                                Cancelar
+
+                            </x-danger-button>
+
+                        @endif
+
+
 
                     @else
                         
