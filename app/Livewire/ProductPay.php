@@ -21,10 +21,10 @@ class ProductPay extends Component
     // OPTION 2 -> Mount
     public function mount() {
 
-        try {
+        if(auth()->user()->hasDefaultPaymentMethod()) {
+
             $this->paymentMethodSelected = $this->getDefaultPaymentMethodProperty()->id; // At started, the value of $paymentMethodSelected will be the default payment method
-        }
-        catch (\Exception $e) {
+
         }
 
     }
