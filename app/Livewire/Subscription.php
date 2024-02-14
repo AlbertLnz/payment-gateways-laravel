@@ -34,6 +34,9 @@ class Subscription extends Component
                     
                     auth()->user()->subscription('Suscripciones blog')->swap($planId);
 
+                    // New EVENT for the Invoice component to know when there is a change, 'render' again the component without refresh the page!
+                    $this->dispatch('newSubscription');
+
                 } else {
 
                     auth()->user()->newSubscription('Suscripciones blog', $planId)->create($this->defaultPaymentMethod->id);
@@ -41,6 +44,10 @@ class Subscription extends Component
                     // EXPLICATIONS:
                     // newSubscription('nameOfProduct', 'planId') <- If planId it's not inserted, it configure default plan from Stripe
                     // create($this->defaultPaymentMethod->id) <---- Card selected will be the default card ('Predeterminado')  
+
+                    // New EVENT for the Invoice component to know when there is a change, 'render' again the component without refresh the page!
+                    $this->dispatch('newSubscription');
+
 
                     auth()->user()->refresh(); // Refresh the page when 1st subscription is created
 
