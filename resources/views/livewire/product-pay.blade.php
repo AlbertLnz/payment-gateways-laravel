@@ -36,8 +36,15 @@
 
             </ul>
 
-            <x-danger-button wire:click="purchaseProduct">
+            <x-danger-button wire:click="purchaseProduct" wire:target="purchaseProduct" wire:loading.attr="disabled">
 
+                <div class="justify-center" wire:target="purchaseProduct" wire:loading>
+                                
+                    <!-- Spinner -->
+                    <x-spinner size="4"/>
+                
+                </div> 
+                
                 Pagar
 
             </x-danger-button>
