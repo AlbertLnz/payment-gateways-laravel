@@ -8,6 +8,8 @@ class Invoices extends Component
 {
     public function render()
     {
-        return view('livewire.invoices');
+        return view('livewire.invoices', [
+            'invoices' => auth()->user()->invoices()
+        ]);
     }
 }
