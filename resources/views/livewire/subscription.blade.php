@@ -118,4 +118,36 @@
             </div>
         </div>
       </section>
+
+<!-- SESSION VARIABLE -->
+    {{-- @if (session('error'))
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "No tienes un método de pago registrado!",
+            });
+        </script>
+    @endif --}}
+
+
+<!-- DISPACH EVENT (LiveWire v3) -->
+    @push('js')
+        
+        <script>
+
+            Livewire.on('error', function (message) {
+
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: message,
+                });
+
+            });
+
+        </script>
+
+    @endpush
+  
 </div>
