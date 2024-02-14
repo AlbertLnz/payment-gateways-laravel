@@ -14,7 +14,9 @@
 
           <div class="px-6 py-4">
             <h1 class="text-gray-900 font-semibold text-xl uppercase">
-              {{ $product->title }}
+
+              <a href="{{ route('products.show', $product) }}">{{ $product->title }}</a>
+
             </h1>
 
             <p class="line-clamp-4">{{ $product->description }}</p>
