@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\BillingController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -23,9 +24,10 @@ Route::get('/articles', [ArticleController::class, 'index'])->name('articles.ind
 
 Route::get('/billing', [BillingController::class, 'index'])->name('billing.index')->middleware('auth');
 
-Route::get('/user/invoice/{invoice}', function (Request $request, string $invoiceId) {
-  return $request->user()->downloadInvoice($invoiceId);
-});
+// Route::get('/user/invoice/{invoice}', function (Request $request, string $invoice) {
+//   return $request->user()->downloadInvoice($invoice); <----- downloadInvoice() functio doesn't work...
+// });
+Route::get('/user/invoice/{invoiceId}', InvoiceController::class)->name('invoice.generatePDF');
 
 // Route::middleware([
 //     'auth:sanctum',
