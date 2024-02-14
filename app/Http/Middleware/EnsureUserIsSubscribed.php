@@ -22,6 +22,8 @@ class EnsureUserIsSubscribed
 
         } else {
 
+            session()->flash('flash.banner', '¡Te has de suscribir a un plan para ver el contenido de cada artículo!');
+
             return redirect()->route('billing.index');
 
         }
