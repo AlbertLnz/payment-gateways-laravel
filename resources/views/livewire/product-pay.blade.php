@@ -8,12 +8,12 @@
 
                 <h1 class="text-lg font-semibold text-gray-800">Método de pago</h1>
 
-                <img class="h-8 " src="https://codersfree.com/img/payments/credit-cards.png" alt="">
+                <img class="h-8" src="https://codersfree.com/img/payments/credit-cards.png" alt="">
 
             </div>
 
         
-            <div class="mb-4">
+            <div class="my-8">
                 <div>
 
                     <input id="card-holder-name" class="form-control mb-4" placeholder="Nombre del titular de la tarjeta">
@@ -26,14 +26,14 @@
                 </div>
                     
                 <!-- Using Button component from Jetstream -->
-                <x-button class="w-full mt-2" id="card-button" data-secret="{{ $intent->client_secret }}">
+                <x-button class="w-full mt-4" id="card-button" data-secret="{{ $intent->client_secret }}">
                     Add Payment Method
                 </x-button>
             </div>
 
         
 
-            <ul class="mb-4">
+            <ul class="my-8 space-y-2">
 
                 @foreach ($paymentMethods as $paymentMethod)
                     
