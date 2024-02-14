@@ -30,11 +30,19 @@ class Subscription extends Component
 
             try {
 
-                auth()->user()->newSubscription('Suscripciones blog', $planId)->create($this->defaultPaymentMethod->id);
+                if(auth()->user()->subscribed('Suscripciones blog')) { // Is the user subscribed to any plan of 'Suscripciones blog' product ?
+                    
+                    auth()->user()->subscription('Suscripciones blog')->swap($planId);
 
-                // EXPLICATIONS:
-                // newSubscription('nameOfProduct', 'planId') <- If planId it's not inserted, it configure default plan from Stripe
-                // create($this->defaultPaymentMethod->id) <---- Card selected will be the default card ('Predeterminado')  
+                } else {
+
+                    auth()->user()->newSubscription('Suscripciones blog', $planId)->create($this->defaultPaymentMethod->id);
+
+                    // EXPLICATIONS:
+                    // newSubscription('nameOfProduct', 'planId') <- If planId it's not inserted, it configure default plan from Stripe
+                    // create($this->defaultPaymentMethod->id) <---- Card selected will be the default card ('Predeterminado')  
+
+                }               
 
             } catch (\Exception $e) {
                 
