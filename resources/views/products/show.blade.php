@@ -39,6 +39,8 @@
 
       <div class="col-span-5">
 
+        @livewire('product-pay')
+
       </div>
 
     </div>
