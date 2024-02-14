@@ -39,7 +39,7 @@ class Subscription extends Component
 
                 } else {
 
-                    auth()->user()->newSubscription('Suscripciones blog', $planId)->create($this->defaultPaymentMethod->id);
+                    auth()->user()->newSubscription('Suscripciones blog', $planId)->trialDays(7)->create($this->defaultPaymentMethod->id);
 
                     // EXPLICATIONS:
                     // newSubscription('nameOfProduct', 'planId') <- If planId it's not inserted, it configure default plan from Stripe
