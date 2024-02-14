@@ -6,6 +6,8 @@
 
     @livewire('payment-methods')
 
+    @livewire('invoices')
+
   </x-container>
 
 </x-app-layout>
