@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
+use App\Http\Middleware\EnsureUserIsSubscribed;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,7 @@ Route::get('/', [ProductController::class, 'index'])->name('web.home');
 
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
 
-Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
+Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show')->middleware(EnsureUserIsSubscribed::class);
 
 Route::get('/billing', [BillingController::class, 'index'])->name('billing.index')->middleware('auth');
 
