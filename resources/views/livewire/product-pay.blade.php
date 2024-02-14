@@ -23,6 +23,12 @@
                             {{ $paymentMethod->billing_details->name }}
                             (xxxx-xxxx-xxxx-{{ $paymentMethod->card->last4 }})
 
+                            @if ($this->defaultPaymentMethod->id == $paymentMethod->id)
+                                        
+                                <span class="ml-2 bg-green-200 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Predeterminado</span>
+
+                            @endif
+
                         </label>
                     </li>
 
