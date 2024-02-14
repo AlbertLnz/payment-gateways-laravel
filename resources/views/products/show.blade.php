@@ -2,7 +2,7 @@
 
   <x-container class="my-12">
 
-    <div class="grid grid-cols-12">
+    <div class="grid grid-cols-12 gap-8">
 
       <div class="col-span-7">
 
@@ -39,7 +39,7 @@
 
       <div class="col-span-5">
 
-        @livewire('product-pay')
+        @livewire('product-pay', ['product' => $product]) <!-- Pass a variable from Blade Page to LiveWire component -->
 
       </div>
 
