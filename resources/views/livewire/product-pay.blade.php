@@ -26,7 +26,15 @@
                 </div>
                     
                 <!-- Using Button component from Jetstream -->
-                <x-button class="w-full mt-4" id="card-button" data-secret="{{ $intent->client_secret }}">
+                <x-button class="w-full mt-4" id="card-button" data-secret="{{ $intent->client_secret }}" wire:target="addPaymentMethod" wire:loading.attr="disabled">
+                    
+                    <div class="justify-center" wire:target="addPaymentMethod" wire:loading>
+                                
+                        <!-- Spinner -->
+                        <x-spinner size="4"/>
+                    
+                    </div> 
+                    
                     Add Payment Method
                 </x-button>
             </div>

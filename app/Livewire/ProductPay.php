@@ -11,6 +11,8 @@ class ProductPay extends Component
     public $product;
     public $paymentMethodSelected;
 
+    protected $listeners = ['paymentMethodSelected' => 'render'];
+
     // OPTION 1 -> Construct
     public function __construct() {
         $this->paymentMethodSelected = $this->getDefaultPaymentMethodProperty()->id; // At started, the value of $paymentMethodSelected will be the default payment method
@@ -50,7 +52,7 @@ class ProductPay extends Component
         auth()->user()->updateDefaultPaymentMethod($paymentMethodId);
 
         $this->paymentMethodSelected = $paymentMethodId; // <-- To ensure that the inserted, will be the selected
-        $this->purchase(); // <-------------------------------- And realize the buy automatically
+        $this->purchaseProduct(); // <------------------------- And realize the buy automatically
         return redirect()->route('thanks'); // <--------------- And redirect to thanks page
     }
 
