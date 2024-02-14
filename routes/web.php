@@ -22,6 +22,8 @@ Route::get('/', [ProductController::class, 'index'])->name('web.home');
 
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 
+Route::view('/thanks', 'thanks')->name('thanks');
+
 // --------------
 
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');

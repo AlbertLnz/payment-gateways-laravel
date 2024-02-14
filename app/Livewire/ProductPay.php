@@ -29,7 +29,7 @@ class ProductPay extends Component
 
         auth()->user()->charge($this->product->price * 100, $this->paymentMethodSelected); // charge( price in cents, paymentMethodId )
 
-        dd('Compra realizada con éxito');
+        redirect()->route('thanks');
 
     }
 
