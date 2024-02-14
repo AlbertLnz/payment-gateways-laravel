@@ -46,6 +46,13 @@ class Subscription extends Component
         }
     }
 
+    public function cancelSubscription() {
+
+        auth()->user()->subscription('Suscripciones blog')->cancel();
+
+    }
+
+
     public function render()
     {
         return view('livewire.subscription');

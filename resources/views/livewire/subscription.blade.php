@@ -97,7 +97,20 @@
                     </ul>
 
                     @if (auth()->user()->subscribedToPrice('price_1OjPaXC1gEKeiBoQ4CndZvpQ', 'Suscripciones blog'))
-                        Suscrito
+
+                        <x-danger-button wire:click="cancelSubscription" wire:target="cancelSubscription" wire:loading.attr="disabled">
+
+                            <div class="justify-center" wire:target="cancelSubscription" wire:loading>
+                            
+                                <!-- Spinner -->
+                                <x-spinner size="4"/>
+                            
+                            </div>  
+
+                            Cancelar
+
+                        </x-danger-button>
+
                     @else
                         
                         <x-button wire:click="newSubscription('price_1OjPaXC1gEKeiBoQ4CndZvpQ')" wire:target="newSubscription('price_1OjPaXC1gEKeiBoQ4CndZvpQ')" wire:loading.attr="disabled">
