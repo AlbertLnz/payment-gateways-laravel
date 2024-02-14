@@ -42,6 +42,8 @@ class Subscription extends Component
                     // newSubscription('nameOfProduct', 'planId') <- If planId it's not inserted, it configure default plan from Stripe
                     // create($this->defaultPaymentMethod->id) <---- Card selected will be the default card ('Predeterminado')  
 
+                    auth()->user()->refresh(); // Refresh the page when 1st subscription is created
+
                 }               
 
             } catch (\Exception $e) {
