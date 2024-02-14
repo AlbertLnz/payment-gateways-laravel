@@ -25,6 +25,14 @@ class ProductPay extends Component
         return auth()->user()->defaultPaymentMethod();
     }
 
+    public function purchaseProduct() {
+
+        auth()->user()->charge($this->product->price * 100, $this->paymentMethodSelected); // charge( price in cents, paymentMethodId )
+
+        dd('Compra realizada con éxito');
+
+    }
+
     public function render()
     {
         return view('livewire.product-pay', [

@@ -12,7 +12,7 @@
 
             </div>
 
-            <ul>
+            <ul class="mb-4">
 
                 @foreach ($paymentMethods as $paymentMethod)
                     
@@ -36,7 +36,11 @@
 
             </ul>
 
-            <p>selected: {{ $paymentMethodSelected }}</p>
+            <x-danger-button wire:click="purchaseProduct">
+
+                Pagar
+
+            </x-danger-button>
 
         </div>
         
