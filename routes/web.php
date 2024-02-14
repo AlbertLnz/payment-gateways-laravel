@@ -20,7 +20,7 @@ use Illuminate\Http\Request;
 
 Route::get('/', [ProductController::class, 'index'])->name('web.home');
 
-Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show')->middleware('auth');
 
 Route::view('/thanks', 'thanks')->name('thanks');
 
