@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,10 @@ Route::get('/', [ProductController::class, 'index'])->name('web.home');
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
 
 Route::get('/billing', [BillingController::class, 'index'])->name('billing.index')->middleware('auth');
+
+Route::get('/user/invoice/{invoice}', function (Request $request, string $invoiceId) {
+  return $request->user()->downloadInvoice($invoiceId);
+});
 
 // Route::middleware([
 //     'auth:sanctum',
