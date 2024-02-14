@@ -43,9 +43,18 @@ class ProductPay extends Component
 
     }
 
+    // Copy of 'PaymentMethods.php' -> Function explained in 'PaymentMethods.php' file
+    public function addPaymentMethod($paymentMethodId) {
+
+        auth()->user()->addPaymentMethod($paymentMethodId);
+        auth()->user()->updateDefaultPaymentMethod($paymentMethodId);
+        
+    }
+
     public function render()
     {
         return view('livewire.product-pay', [
+            'intent' => auth()->user()->createSetupIntent(),
             'paymentMethods' => auth()->user()->paymentMethods()
         ]);
     }

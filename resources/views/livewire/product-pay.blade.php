@@ -12,6 +12,27 @@
 
             </div>
 
+        
+            <div class="mb-4">
+                <div>
+
+                    <input id="card-holder-name" class="form-control mb-4" placeholder="Nombre del titular de la tarjeta">
+    
+                    <!-- Stripe Elements Placeholder -->
+                    <div id="card-element" class="form-control"></div>
+    
+                    <span id="card-error-message" class="text-red-600 text-sm mt-2"></span>
+    
+                </div>
+                    
+                <!-- Using Button component from Jetstream -->
+                <x-button class="w-full mt-2" id="card-button" data-secret="{{ $intent->client_secret }}">
+                    Add Payment Method
+                </x-button>
+            </div>
+
+        
+
             <ul class="mb-4">
 
                 @foreach ($paymentMethods as $paymentMethod)
@@ -53,8 +74,9 @@
         
     </div>
 
+    <!-- push to Stack JS  -->
     @push('js')
-        
+
         <script>
 
             Livewire.on('errorProduct', function (message) {
@@ -67,6 +89,62 @@
 
             });
 
+        </script>
+
+        <script src="https://js.stripe.com/v3/"></script>
+
+        <script>
+            const stripe = Stripe("{{ env('STRIPE_KEY') }}");
+        
+            const elements = stripe.elements();
+            const cardElement = elements.create('card');
+        
+            cardElement.mount('#card-element');
+        </script>
+
+        <script>
+            const cardHolderName = document.getElementById('card-holder-name');
+            const cardButton = document.getElementById('card-button');
+            const clientSecret = cardButton.dataset.secret;
+            
+            cardButton.addEventListener('click', async (e) => {
+
+                // Button disabled -> true
+                cardButton.disabled = true
+
+                const { setupIntent, error } = await stripe.confirmCardSetup(
+                    clientSecret, {
+                        payment_method: {
+                            card: cardElement,
+                            billing_details: { name: cardHolderName.value }
+                        }
+                    }
+                );
+            
+                if (error) {
+                    // Display "error.message" to the user...
+
+                    // console.log(error.message)
+                    let span = document.getElementById('card-error-message')
+                    span.textContent = error.message
+
+                    // Button disabled -> false
+                    cardButton.disabled = false
+
+                } else {
+                    // The card has been verified successfully...
+
+                    // console.log(setupIntent.payment_method)
+                    @this.addPaymentMethod(setupIntent.payment_method)
+                                        
+                    // Clean form
+                    cardHolderName.value = ''
+                    cardElement.clear()
+
+                    // Button disabled -> false
+                    cardButton.disabled = false
+                }
+            });
         </script>
 
     @endpush
