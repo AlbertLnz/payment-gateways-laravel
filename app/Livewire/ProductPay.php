@@ -14,14 +14,20 @@ class ProductPay extends Component
     protected $listeners = ['paymentMethodSelected' => 'render'];
 
     // OPTION 1 -> Construct
-    public function __construct() {
-        $this->paymentMethodSelected = $this->getDefaultPaymentMethodProperty()->id; // At started, the value of $paymentMethodSelected will be the default payment method
-    }
-
-    // OPTION 2 -> Mount
-    // public function mount() {
+    // public function __construct() {
     //     $this->paymentMethodSelected = $this->getDefaultPaymentMethodProperty()->id; // At started, the value of $paymentMethodSelected will be the default payment method
     // }
+
+    // OPTION 2 -> Mount
+    public function mount() {
+
+        try {
+            $this->paymentMethodSelected = $this->getDefaultPaymentMethodProperty()->id; // At started, the value of $paymentMethodSelected will be the default payment method
+        }
+        catch (\Exception $e) {
+        }
+
+    }
 
     // Computed property
     public function getDefaultPaymentMethodProperty() {

@@ -65,18 +65,23 @@
 
             </ul>
 
-            <x-danger-button wire:click="purchaseProduct" wire:target="purchaseProduct" wire:loading.attr="disabled">
+            @if (count($paymentMethods) > 0)
 
-                <div class="justify-center" wire:target="purchaseProduct" wire:loading>
-                                
-                    <!-- Spinner -->
-                    <x-spinner size="4"/>
-                
-                </div> 
-                
-                Pagar
+                <x-danger-button wire:click="purchaseProduct" wire:target="purchaseProduct" wire:loading.attr="disabled">
 
-            </x-danger-button>
+                    <div class="justify-center" wire:target="purchaseProduct" wire:loading>
+                                    
+                        <!-- Spinner -->
+                        <x-spinner size="4"/>
+                    
+                    </div> 
+                    
+                    Pagar
+
+                </x-danger-button>
+
+            
+            @endif
 
         </div>
         
