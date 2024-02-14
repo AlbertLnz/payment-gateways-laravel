@@ -39,8 +39,9 @@ class Subscription extends Component
             } catch (\Exception $e) {
                 
                 // Payment Method card rejected -> Enough founds, stolen...
-                $this->dispatch('error', $e->getMessage());
-            
+                // $this->dispatch('error', $e->getMessage());  // <-- English Version
+                $this->dispatch('error', __($e->getMessage())); // <-- Spanish Version
+
             }
         }
     }
