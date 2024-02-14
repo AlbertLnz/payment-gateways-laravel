@@ -53,4 +53,22 @@
         
     </div>
 
+    @push('js')
+        
+        <script>
+
+            Livewire.on('errorProduct', function (message) {
+
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: message,
+                });
+
+            });
+
+        </script>
+
+    @endpush
+
 </div>

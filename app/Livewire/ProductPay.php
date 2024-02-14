@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Exception;
 use Livewire\Component;
 
 class ProductPay extends Component
@@ -27,9 +28,18 @@ class ProductPay extends Component
 
     public function purchaseProduct() {
 
-        auth()->user()->charge($this->product->price * 100, $this->paymentMethodSelected); // charge( price in cents, paymentMethodId )
+        try{
 
-        redirect()->route('thanks');
+            auth()->user()->charge($this->product->price * 100, $this->paymentMethodSelected); // charge( price in cents, paymentMethodId )
+
+            redirect()->route('thanks');
+
+        }catch(Exception $e) {
+
+            $this->addError('paymentMethodSelected', $e->getMessage());
+            $this->dispatch('errorProduct', $e->getMessage());  // <-- Send error (English Version)
+
+        }
 
     }
 
