@@ -22,6 +22,8 @@ Route::get('/', [ProductController::class, 'index'])->name('web.home');
 
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
 
+Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
+
 Route::get('/billing', [BillingController::class, 'index'])->name('billing.index')->middleware('auth');
 
 // Route::get('/user/invoice/{invoice}', function (Request $request, string $invoice) {

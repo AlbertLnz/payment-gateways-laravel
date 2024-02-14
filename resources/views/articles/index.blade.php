@@ -11,7 +11,9 @@
           <div class="px-6 py-4">
 
             <h1 class="font-semibold mb-2 text-xl">
-              {{ $article->title }}
+              
+              <a href="{{ route('articles.show', $article) }}">{{ $article->title }}</a>
+
             </h1>
 
             {{ $article->extract }}
