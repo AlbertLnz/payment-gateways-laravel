@@ -27,11 +27,21 @@ class Subscription extends Component
 
         }else{
 
-            auth()->user()->newSubscription('Suscripciones blog', $planId)->create($this->defaultPaymentMethod->id); 
+
+            try {
+
+                auth()->user()->newSubscription('Suscripciones blog', $planId)->create($this->defaultPaymentMethod->id);
+
+                // EXPLICATIONS:
+                // newSubscription('nameOfProduct', 'planId') <- If planId it's not inserted, it configure default plan from Stripe
+                // create($this->defaultPaymentMethod->id) <---- Card selected will be the default card ('Predeterminado')  
+
+            } catch (\Exception $e) {
+                
+                // Payment Method card rejected -> Enough founds, stolen...
+                $this->dispatch('error', $e->getMessage());
             
-            // EXPLICATIONS:
-            // newSubscription('nameOfProduct', 'planId') <- If planId it's not inserted, it configure default plan from Stripe
-            // create($this->defaultPaymentMethod->id) <---- Card selected will be the default card ('Predeterminado')    
+            }
         }
     }
 
