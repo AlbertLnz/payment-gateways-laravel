@@ -59,13 +59,15 @@
 
         </li>
 
-        <li> <!-- Mercadopago-->
+         <!-- Mercadopago-->
+        <li>
           <button class="w-full flex justify-center bg-gray-200 py-2 rounded-lg shadow-lg">
             <img class="h-8" src="https://metaverso-virtual.com/wp-content/uploads/2023/12/mercado-pago.png" alt="Mercadopago logo">
           </button>
         </li>
 
-        <li> <!-- PayU-->
+         <!-- PayU-->
+        <li>
           <button class="w-full flex justify-center bg-gray-200 py-2 rounded-lg shadow-lg">
             <img class="h-8" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/PayU.svg/1200px-PayU.svg.png" alt="PayU logo">
           </button>
