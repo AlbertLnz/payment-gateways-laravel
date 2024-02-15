@@ -25,7 +25,7 @@
             <img class="h-8" src="https://micuenta.izipay.pe/_nuxt/img/logo_reverse.8bcf6e9.png" alt="IziPay logo">
           </button>
 
-          <div class="pt-6 pb-4" x-show="open" style="display: none">
+          <div class="pt-6 pb-4 flex justify-center" x-show="open" style="display: none">
 
             {{-- Form: --}}
             <div class="kr-embedded" kr-form-token="{{ $iziPay_formToken }}">
@@ -91,7 +91,7 @@
     <script type="text/javascript"
             src="https://static.micuentaweb.pe/static/js/krypton-client/V4.0/stable/kr-payment-form.min.js"
             kr-public-key={{ config('services.izipay.public_key') }}
-            kr-post-url-success="/";>
+            kr-post-url-success="{{ route('paid.izipay') }}";>
     </script>
   
     <link rel="stylesheet" href="https://static.micuentaweb.pe/static/js/krypton-client/V4.0/ext/neon-reset.min.css">

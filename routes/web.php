@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\PaidController;
 use App\Http\Controllers\PaymentGatewaysController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WebhookController;
@@ -44,6 +45,8 @@ Route::get('/user/invoice/{invoiceId}', InvoiceController::class)->name('invoice
 // --------------
 
 Route::get('/payment-gateways', [PaymentGatewaysController::class, 'index'])->name('gateways.index');
+
+Route::post('/paid/izipay', [PaidController::class, 'izipay'])->name('paid.izipay');
 
 
 // Route::middleware([
