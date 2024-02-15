@@ -11,6 +11,11 @@
             'url' => route('articles.index'),
             'active' => request()->routeIs('articles.*')
         ],
+        [
+            'name' => 'Payment Gateways',
+            'url' => route('gateways.index'),
+            'active' => request()->routeIs('cards.*')
+        ],
     ];
 
 @endphp

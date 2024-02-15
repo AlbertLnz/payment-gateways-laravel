@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\PaymentGatewaysController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WebhookController;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,11 @@ Route::get('/billing', [BillingController::class, 'index'])->name('billing.index
 //   return $request->user()->downloadInvoice($invoice); <----- downloadInvoice() functio doesn't work...
 // });
 Route::get('/user/invoice/{invoiceId}', InvoiceController::class)->name('invoice.generatePDF');
+
+// --------------
+
+Route::get('/payment-gateways', PaymentGatewaysController::class)->name('gateways.index');
+
 
 // Route::middleware([
 //     'auth:sanctum',
