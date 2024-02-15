@@ -27,9 +27,17 @@
 
           <div class="pt-6 pb-4" x-show="open" style="display: none">
 
-            <form action="">
-              My form
-            </form>
+            {{-- Form: --}}
+            <div class="kr-embedded" kr-form-token="{{ $iziPay_formToken }}">
+              
+              <div class="kr-pan"></div>
+              <div class="kr-expiry"></div>
+              <div class="kr-security-code"></div>
+
+              <div class="kr-payment-button"></div>
+
+              <div class="kr-form-error"></div>
+            </div>
 
           </div>
 
@@ -78,5 +86,17 @@
     </div>
 
   </x-container>
+  
+  @push('iziPay')
+    <script type="text/javascript"
+            src="https://static.micuentaweb.pe/static/js/krypton-client/V4.0/stable/kr-payment-form.min.js"
+            kr-public-key={{ config('services.izipay.public_key') }}
+            kr-post-url-success="/";>
+    </script>
+  
+    <link rel="stylesheet" href="https://static.micuentaweb.pe/static/js/krypton-client/V4.0/ext/neon-reset.min.css">
+  
+    <script type="text/javascript" src="https://static.micuentaweb.pe/static/js/krypton-client/V4.0/ext/neon.js"></script>
+  @endpush
 
 </x-app-layout>
