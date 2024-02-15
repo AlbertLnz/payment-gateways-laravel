@@ -35,16 +35,28 @@
 
         </li>
 
-        <li> <!-- Niubiz-->
+         <!-- Niubiz-->
+        <li>
           <button class="w-full flex justify-center bg-gray-200 py-2 rounded-lg shadow-lg">
             <img class="h-8" src="https://capsource-bucket.s3.us-west-2.amazonaws.com/wp-content/uploads/2020/05/08180959/cropped-logo-niubiz.png" alt="Niubiz logo">
           </button>
         </li>
-
-        <li> <!-- PayPal-->
-          <button class="w-full flex justify-center bg-gray-200 py-2 rounded-lg shadow-lg">
+        
+        <!-- PayPal-->
+        <li x-data="{open: false}">
+          <button class="w-full flex justify-center bg-gray-200 py-2 rounded-lg shadow-lg" x-on:click="open = !open">
             <img class="h-8" src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c530.png" alt="PayPal logo">
           </button>
+
+          <div class="pt-6 pb-4" x-show="open" style="display: none">
+
+            <select>
+              <option value="">Form</option>
+              <option value="">Modal</option>
+            </select>
+
+          </div>
+
         </li>
 
         <li> <!-- Mercadopago-->
