@@ -43,7 +43,7 @@ Route::get('/user/invoice/{invoiceId}', InvoiceController::class)->name('invoice
 
 // --------------
 
-Route::get('/payment-gateways', PaymentGatewaysController::class)->name('gateways.index');
+Route::get('/payment-gateways', [PaymentGatewaysController::class, 'index'])->name('gateways.index');
 
 
 // Route::middleware([
