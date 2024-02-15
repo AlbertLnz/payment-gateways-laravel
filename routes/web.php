@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\WebhookController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -23,6 +24,8 @@ Route::get('/', [ProductController::class, 'index'])->name('web.home');
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show')->middleware('auth');
 
 Route::view('/thanks', 'thanks')->name('thanks');
+
+Route::post('/stripe/webhook', [WebhookController::class, 'handleWebhook'])->name('stripe.handleWebhook');
 
 // --------------
 
