@@ -19,10 +19,10 @@
 
       <ul class="space-y-6">
 
-         <!-- Izzy Pay-->
+         <!-- IziPay-->
         <li x-data="{open: false}">
           <button class="w-full flex justify-center bg-gray-200 py-2 rounded-lg shadow-lg" x-on:click="open = !open">
-            <img class="h-8" src="https://izzypay.hu/wp-content/uploads/2022/02/izzylogo.png" alt="IzzyPay logo">
+            <img class="h-8" src="https://micuenta.izipay.pe/_nuxt/img/logo_reverse.8bcf6e9.png" alt="IziPay logo">
           </button>
 
           <div class="pt-6 pb-4" x-show="open" style="display: none">
