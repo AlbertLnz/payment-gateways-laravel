@@ -19,10 +19,20 @@
 
       <ul class="space-y-6">
 
-        <li> <!-- Izzy Pay-->
-          <button class="w-full flex justify-center bg-gray-200 py-2 rounded-lg shadow-lg">
+         <!-- Izzy Pay-->
+        <li x-data="{open: false}">
+          <button class="w-full flex justify-center bg-gray-200 py-2 rounded-lg shadow-lg" x-on:click="open = !open">
             <img class="h-8" src="https://izzypay.hu/wp-content/uploads/2022/02/izzylogo.png" alt="IzzyPay logo">
           </button>
+
+          <div class="pt-6 pb-4" x-show="open" style="display: none">
+
+            <form action="">
+              My form
+            </form>
+
+          </div>
+
         </li>
 
         <li> <!-- Niubiz-->
