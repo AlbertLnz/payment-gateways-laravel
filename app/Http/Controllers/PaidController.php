@@ -67,24 +67,32 @@ class PaidController extends Controller
 
         $requestData = Http::withHeaders($headers)->post($url, $body)->json();
 
-        // Response in a Flash Session Variable (only 1 use):
-        session()->flash('niubiz', [
-            // 'response' => $requestData,
-            'textDescription' => $requestData['dataMap']['ACTION_DESCRIPTION'],
-            'purchaseNumber' => $request->purchaseNumber,
-            'transactionTime' => $requestData['dataMap']['TRANSACTION_DATE'],
-            'cardNumber' => $requestData['dataMap']['CARD'],
-            'cardBrand' => $requestData['dataMap']['BRAND'],
-            'transactionAmount' => $requestData['order']['amount'] ,
-            'transactionCurrency' => $requestData['order']['currency'],
-        ]);
+        
 
         if(isset($requestData['dataMap']) && $requestData['dataMap']['ACTION_CODE'] === '000') {
             
+            // Response in a Flash Session Variable (only 1 use):
+            session()->flash('niubizOK', [
+                // 'response' => $requestData,
+                'textDescription' => $requestData['dataMap']['ACTION_DESCRIPTION'],
+                'purchaseNumber' => $request->purchaseNumber,
+                'transactionTime' => $requestData['dataMap']['TRANSACTION_DATE'],
+                'cardNumber' => $requestData['dataMap']['CARD'],
+                'cardBrand' => $requestData['dataMap']['BRAND'],
+                'transactionAmount' => $requestData['order']['amount'] ,
+                'transactionCurrency' => $requestData['order']['currency'],
+            ]);
+
             return redirect()->route('thanks');
 
         } else {
-            throw new Exception('Fail');
+            
+            session()->flash('niubizERROR', [
+                // 'response' => $requestData,
+                'message' => $requestData['data']['ACTION_DESCRIPTION']
+            ]);
+
+            return redirect()->route('gateways.index');
         }
     }
 }

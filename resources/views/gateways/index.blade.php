@@ -2,6 +2,19 @@
 
   <x-container class="py-10">
     
+    <!-- PAYMENT ERROR MESSAGE -->
+    @if (session('niubizERROR'))
+
+      @php
+        // $data = session('niubizERROR')['response'];
+        $message = session('niubizERROR')['message'];
+      @endphp
+
+      <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
+        <span class="font-medium">ERROR - {{ $message }}</span>
+      </div>
+    @endif
+
 
     <div class="flex items-center mb-8">
 

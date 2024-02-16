@@ -7,17 +7,17 @@
     
       <div class="flex flex-col">
 
-        @if (session('niubiz'))
+        @if (session('niubizOK'))
       
           @php
               // $data = session('niubiz')['response'];
-              $textDescription = session('niubiz')['textDescription'];
-              $purchaseNumber = session('niubiz')['purchaseNumber'];
-              $transactionTime = session('niubiz')['transactionTime'];
-              $cardNumber = session('niubiz')['cardNumber'];
-              $cardBrand = strtoupper(session('niubiz')['cardBrand']);
-              $transactionAmount = session('niubiz')['transactionAmount'];
-              $transactionCurrency = session('niubiz')['transactionCurrency'];
+              $textDescription = session('niubizOK')['textDescription'];
+              $purchaseNumber = session('niubizOK')['purchaseNumber'];
+              $transactionTime = session('niubizOK')['transactionTime'];
+              $cardNumber = session('niubizOK')['cardNumber'];
+              $cardBrand = strtoupper(session('niubizOK')['cardBrand']);
+              $transactionAmount = session('niubizOK')['transactionAmount'];
+              $transactionCurrency = session('niubizOK')['transactionCurrency'];
           @endphp
 
           <!-- Alert Tailwind -->
