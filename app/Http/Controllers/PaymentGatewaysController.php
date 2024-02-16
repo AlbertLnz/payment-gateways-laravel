@@ -118,8 +118,10 @@ class PaymentGatewaysController extends Controller
             'grant_type' => 'client_credentials'
         ];
 
-        $response = Http::asForm()->withHeaders($header)->post($url.'/v1/oauth2/token', $body);
+        $response = Http::asForm()->withHeaders($header)->post($url.'/v1/oauth2/token', $body)->json();
 
-        return $response;
+        $accesToken = $response['access_token'];
+
+        return $accesToken;
     }
 }
