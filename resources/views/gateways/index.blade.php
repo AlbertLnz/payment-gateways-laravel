@@ -153,7 +153,14 @@
         },
 
         onApprove: function(data) {
-          alert(data.orderID)
+          return axios.post(("/paid/capture-paypal-order"), {
+            orderID: data.orderID
+          }).then(function(response) {
+            window.location.href = "{{route('thanks')}}"
+          }).catch(function(error) {
+            console.log(error)
+          })
+
         }
 
       }).render("#paypal-button-container");

@@ -102,7 +102,7 @@ class PaymentGatewaysController extends Controller
         return $response['sessionKey'];
     }
 
-    private function paypal_generateAccessToken() {
+    public function paypal_generateAccessToken() {
 
         $url = config('services.paypal.url');
         $clientId = config('services.paypal.client_id');

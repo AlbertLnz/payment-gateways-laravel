@@ -109,4 +109,29 @@ class PaidController extends Controller
 
         return $order;
     }
+    public function capturePaypalOrder(Request $request)  {
+
+        $accessToken = $this->paymentController->paypal_generateAccessToken();
+        $orderID = $request->orderID;
+
+        $url = config('services.paypal.url');
+
+        $headers = [
+            'Content-Type' => 'application/json',
+            'Authorization' => $accessToken,
+        ];
+
+        $body = [
+            'intent' => 'CAPTURE'
+        ];
+
+        $response = Http::withHeaders($headers)->post($url."/v2/checkout/orders/$orderID/capture", $body)->json();
+
+        if(!isset($response['status'])|| $response['status'] !== 'COMPLETED') {
+            throw new Exception('Error al capturar el pago');
+        } else{
+
+            return $response;
+        }
+    }
 }
