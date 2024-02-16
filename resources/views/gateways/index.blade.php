@@ -45,7 +45,7 @@
 
          <!-- Niubiz-->
         <li>
-          <button class="w-full flex justify-center bg-gray-200 py-2 rounded-lg shadow-lg" onclick="openForm();">
+          <button class="w-full flex justify-center bg-gray-200 py-2 rounded-lg shadow-lg" onclick="VisanetCheckout.open();">
             <img class="h-8" src="https://capsource-bucket.s3.us-west-2.amazonaws.com/wp-content/uploads/2020/05/08180959/cropped-logo-niubiz.png" alt="Niubiz logo">
           </button>
         </li>
@@ -120,10 +120,6 @@
           }
         });
       })
-
-      function openForm() {
-        VisanetCheckout.open();
-      }
     </script>
 
   @endpush
