@@ -69,12 +69,9 @@
             <img class="h-8" src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c530.png" alt="PayPal logo">
           </button>
 
-          <div class="pt-6 pb-4" x-show="open" style="display: none">
+          <div class="pt-6 pb-4 flex justify-center" x-show="open" style="display: none">
 
-            <select>
-              <option value="">Form</option>
-              <option value="">Modal</option>
-            </select>
+            <div id="paypal-button-container"></div>
 
           </div>
 
@@ -139,6 +136,53 @@
       })
     </script>
 
+  @endpush
+
+  @push('jsPaypal')
+    <script src="https://www.paypal.com/sdk/js?client-id={{config('services.paypal.client_id')}}&currency=USD"></script>
+    <script>
+      window.paypal.Buttons({
+        createOrder: async function() {
+          try {
+            const response = await fetch("/api/orders", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer ACCESS-TOKEN",
+                "PayPal-Partner-Attribution-Id": "BN-CODE",
+                "PayPal-Auth-Assertion": "PAYPAL-AUTH-ASSERTION"
+              },
+              // use the "body" param to optionally pass additional order information
+              // like product ids and quantities
+              body: JSON.stringify({
+                cart: [
+                  {
+                    id: "YOUR_PRODUCT_ID",
+                    quantity: "YOUR_PRODUCT_QUANTITY",
+                  },
+                ],
+              }),
+            });
+            
+            const orderData = await response.json();
+              
+            if (orderData.id) {
+              return orderData.id;
+            } else {
+              const errorDetail = orderData?.details?.[0];
+              const errorMessage = errorDetail
+                ? `${errorDetail.issue} ${errorDetail.description} (${orderData.debug_id})`
+                : JSON.stringify(orderData);
+            
+              throw new Error(errorMessage);
+            }
+          } catch (error) {
+            console.error(error);
+            resultMessage(`Could not initiate PayPal Checkout...<br><br>${error}`);
+          }
+        }
+      }).render("#paypal-button-container");
+    </script>    
   @endpush
 
 </x-app-layout>

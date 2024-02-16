@@ -61,5 +61,8 @@
         <!-- JS Niubiz -->
         @stack('jsNiubiz')
 
+        <!-- JS PayPal -->
+        @stack('jsPaypal')
+
     </body>
 </html>
