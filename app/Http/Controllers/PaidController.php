@@ -95,4 +95,10 @@ class PaidController extends Controller
             return redirect()->route('gateways.index');
         }
     }
+
+    public function paypal(Request $request) {
+        $accessToken = PaymentGatewaysController::paypal_generateAccessToken();
+
+        return $accessToken;
+    }
 }

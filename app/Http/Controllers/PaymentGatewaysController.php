@@ -101,4 +101,25 @@ class PaymentGatewaysController extends Controller
 
         return $response['sessionKey'];
     }
+
+    public static function paypal_generateAccessToken() {
+
+        $url = config('services.paypal.url');
+        $clientId = config('services.paypal.client_id');
+        $secret = config('services.paypal.secret');
+
+        $auth = base64_encode($clientId . ':' . $secret);
+
+        $header = [
+            'Authorization' => "Basic $auth",
+        ];
+
+        $body = [
+            'grant_type' => 'client_credentials'
+        ];
+
+        $response = Http::asForm()->withHeaders($header)->post($url.'/v1/oauth2/token', $body);
+
+        return $response;
+    }
 }
