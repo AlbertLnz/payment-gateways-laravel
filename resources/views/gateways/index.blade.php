@@ -45,7 +45,7 @@
 
          <!-- Niubiz-->
         <li>
-          <button class="w-full flex justify-center bg-gray-200 py-2 rounded-lg shadow-lg">
+          <button class="w-full flex justify-center bg-gray-200 py-2 rounded-lg shadow-lg" onclick="openForm();">
             <img class="h-8" src="https://capsource-bucket.s3.us-west-2.amazonaws.com/wp-content/uploads/2020/05/08180959/cropped-logo-niubiz.png" alt="Niubiz logo">
           </button>
         </li>
@@ -97,6 +97,32 @@
     <link rel="stylesheet" href="https://static.micuentaweb.pe/static/js/krypton-client/V4.0/ext/neon-reset.min.css">
   
     <script type="text/javascript" src="https://static.micuentaweb.pe/static/js/krypton-client/V4.0/ext/neon.js"></script>
+  @endpush
+
+  @push('jsNiubiz')
+    <script type="text/javascript" src="{{ config('services.niubiz.url_js') }}"></script>
+
+    <script type="text/javascript">
+      function openForm() {
+        VisanetCheckout.configure({
+          sessiontoken: "{{ $niubiz_sessionToken }}",
+          channel: 'web',
+          merchantid: "{{ config('services.niubiz.merchant_id') }}",
+          purchasenumber: Math.floor(Math.random() * 1000), // in this case, number random
+          amount: 100,
+          expirationminutes: '20', // 20 minutes
+          timeouturl: " {{ route('web.home') }} ",  // redirect if 'expirationminutes' expire
+          merchantlogo: 'img/comercio.png',  // default logo, platanitos logo
+          formbuttoncolor: '#6875F5', // button color
+          action: " {{ route('paid.niubiz') }} ", // POST route to validate the pay
+          complete: function(params) {
+            alert(JSON.stringify(params));
+          }
+        });
+        VisanetCheckout.open();
+      }
+    </script>
+
   @endpush
 
 </x-app-layout>

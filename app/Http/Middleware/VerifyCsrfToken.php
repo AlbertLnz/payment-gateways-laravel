@@ -13,6 +13,6 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'stripe/*',
-        'paid/izipay'
+        'paid/*' // === paid/izipay, paid/niubiz
     ];
 }

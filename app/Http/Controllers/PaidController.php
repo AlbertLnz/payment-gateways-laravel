@@ -32,4 +32,9 @@ class PaidController extends Controller
 
         return redirect()->route('thanks');
     }
+
+    public function niubiz(Request $request) {
+
+        return 'Procesando pago aún sin validar!';
+    }
 }

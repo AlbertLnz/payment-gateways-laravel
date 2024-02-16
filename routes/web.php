@@ -47,6 +47,7 @@ Route::get('/user/invoice/{invoiceId}', InvoiceController::class)->name('invoice
 Route::get('/payment-gateways', [PaymentGatewaysController::class, 'index'])->name('gateways.index');
 
 Route::post('/paid/izipay', [PaidController::class, 'izipay'])->name('paid.izipay');
+Route::post('/paid/niubiz', [PaidController::class, 'niubiz'])->name('paid.niubiz');
 
 
 // Route::middleware([

@@ -58,5 +58,8 @@
         <!-- JS stack -->
         @stack('js')
 
+        <!-- JS Niubiz -->
+        @stack('jsNiubiz')
+
     </body>
 </html>
