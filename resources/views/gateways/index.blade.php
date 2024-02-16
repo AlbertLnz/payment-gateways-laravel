@@ -141,45 +141,15 @@
   @push('jsPaypal')
     <script src="https://www.paypal.com/sdk/js?client-id={{config('services.paypal.client_id')}}&currency=USD"></script>
     <script>
-      window.paypal.Buttons({
-        createOrder: async function() {
-          try {
-            const response = await fetch("/api/orders", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer ACCESS-TOKEN",
-                "PayPal-Partner-Attribution-Id": "BN-CODE",
-                "PayPal-Auth-Assertion": "PAYPAL-AUTH-ASSERTION"
-              },
-              // use the "body" param to optionally pass additional order information
-              // like product ids and quantities
-              body: JSON.stringify({
-                cart: [
-                  {
-                    id: "YOUR_PRODUCT_ID",
-                    quantity: "YOUR_PRODUCT_QUANTITY",
-                  },
-                ],
-              }),
-            });
-            
-            const orderData = await response.json();
-              
-            if (orderData.id) {
-              return orderData.id;
-            } else {
-              const errorDetail = orderData?.details?.[0];
-              const errorMessage = errorDetail
-                ? `${errorDetail.issue} ${errorDetail.description} (${orderData.debug_id})`
-                : JSON.stringify(orderData);
-            
-              throw new Error(errorMessage);
-            }
-          } catch (error) {
-            console.error(error);
-            resultMessage(`Could not initiate PayPal Checkout...<br><br>${error}`);
-          }
+      window.paypal.Buttons({ 
+        createOrder() {
+          return axios.post("{{route('paid.paypal')}}", {
+            amount: 100
+          }).then(function(response) {
+            return response.data.id
+          }).catch(function(error){
+            console.log(error)
+          })
         }
       }).render("#paypal-button-container");
     </script>    

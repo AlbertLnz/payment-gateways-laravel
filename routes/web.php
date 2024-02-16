@@ -48,7 +48,7 @@ Route::get('/payment-gateways', [PaymentGatewaysController::class, 'index'])->na
 
 Route::post('/paid/izipay', [PaidController::class, 'izipay'])->name('paid.izipay');
 Route::post('/paid/niubiz', [PaidController::class, 'niubiz'])->name('paid.niubiz');
-Route::get('/paid/paypal', [PaidController::class, 'paypal'])->name('paid.paypal');
+Route::post('/paid/paypal', [PaidController::class, 'paypal'])->name('paid.paypal');
 
 // Route::middleware([
 //     'auth:sanctum',
