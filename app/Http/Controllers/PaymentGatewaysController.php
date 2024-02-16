@@ -48,7 +48,7 @@ class PaymentGatewaysController extends Controller
         return $response['answer']['formToken'];
     }
 
-    private function niubiz_generateAccessToken() {
+    public static function niubiz_generateAccessToken() {
 
         $url = config('services.niubiz.url_api') . '/api.security/v1/security';
         $user = config('services.niubiz.user');

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Exception;
 use Illuminate\Http\Request;
+use App\Http\Controllers\PaymentGatewaysController;
+use Illuminate\Support\Facades\Http;
 
 class PaidController extends Controller
 {
@@ -38,10 +40,39 @@ class PaidController extends Controller
 
         // ORIGINAL REQUEST WITH 1 OBJECT WITH 3 VALUES --> transactionToken ; customerEmail ; channel
         // $request->all();
-        // But I need: 'purchaseNumber' & 'amount' ! --> Now 5 values
+        // But I need: 'purchaseNumber' & 'amount' ! --> Now 5 values --> transactionToken ; customerEmail ; channel ; purchaseNumber ; amount
 
+        $accessToken = PaymentGatewaysController::niubiz_generateAccessToken();
+        $merchantId = config('services.niubiz.merchant_id');
 
+        $url = config('services.niubiz.url_api') . "/api.authorization/v3/authorization/ecommerce/$merchantId";
 
-        return $request->all();
+        $headers = [
+            'Authorization' => $accessToken,
+            'Content-Type' => 'application/json'
+        ];
+
+        $body = [
+            'channel' => 'web',
+            'captureType' => 'manual',
+            'accountable' => true,
+            'order' => [
+                'tokenId' => $request->transactionToken,
+                'purchaseNumber' => $request->purchaseNumber,
+                'amount' => $request->amount,
+                'currency' => env('NIUBIZ_CURRENCY')
+            ],
+
+        ];
+
+        $response = Http::withHeaders($headers)->post($url, $body)->json();
+
+        if(isset($response['dataMap']) && $response['dataMap']['ACTION_CODE'] === 000) {
+            
+            return 'Correct';
+
+        } else {
+            throw new Exception('Fail');
+        }
     }
 }
