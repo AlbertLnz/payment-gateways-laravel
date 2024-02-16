@@ -10,6 +10,7 @@ class PaidController extends Controller
     public function izipay(Request $request) {
 
         // REQUEST WITH 5 ITEMS --> kr-hash ; kr-hash-algorithm ; kr-answer-type ; kr-answer ; kr-hash-key
+        // $request->all();
 
         // 1st validation:
         if($request->get('kr-hash-algorithm') !== 'sha256_hmac') {
@@ -35,6 +36,12 @@ class PaidController extends Controller
 
     public function niubiz(Request $request) {
 
-        return 'Procesando pago aún sin validar!';
+        // ORIGINAL REQUEST WITH 1 OBJECT WITH 3 VALUES --> transactionToken ; customerEmail ; channel
+        // $request->all();
+        // But I need: 'purchaseNumber' & 'amount' ! --> Now 5 values
+
+
+
+        return $request->all();
     }
 }

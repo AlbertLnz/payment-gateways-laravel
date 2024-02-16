@@ -104,17 +104,21 @@
 
     <script type="text/javascript">
       document.addEventListener('DOMContentLoaded', function(event){
+
+        const purchaseNumber = Math.floor(Math.random() * 1000);
+        const amountValue = 100;
+
         VisanetCheckout.configure({
           sessiontoken: "{{ $niubiz_sessionToken }}",
           channel: 'web',
           merchantid: "{{ config('services.niubiz.merchant_id') }}",
-          purchasenumber: Math.floor(Math.random() * 1000), // in this case, number random
-          amount: 100,
+          purchasenumber: purchaseNumber, // in this case, number random
+          amount: amountValue,
           expirationminutes: '20', // 20 minutes
           timeouturl: " {{ route('web.home') }} ",  // redirect if 'expirationminutes' expire
           merchantlogo: 'img/comercio.png',  // default logo, platanitos logo
           formbuttoncolor: '#6875F5', // button color
-          action: " {{ route('paid.niubiz') }} ", // POST route to validate the pay
+          action: "{{ route('paid.niubiz') }}" + `?purchaseNumber=${purchaseNumber}` + `&amount=${amountValue}`, // POST route to validate the pay
           complete: function(params) {
             alert(JSON.stringify(params));
           }
