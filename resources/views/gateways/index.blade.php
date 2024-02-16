@@ -142,7 +142,7 @@
     <script src="https://www.paypal.com/sdk/js?client-id={{config('services.paypal.client_id')}}&currency=USD"></script>
     <script>
       window.paypal.Buttons({ 
-        createOrder() {
+        createOrder: function() {
           return axios.post("{{route('paid.paypal')}}", {
             amount: 100
           }).then(function(response) {
@@ -150,9 +150,13 @@
           }).catch(function(error){
             console.log(error)
           })
+        },
+
+        onApprove: function(data) {
+          alert(data.orderID)
         }
+
       }).render("#paypal-button-container");
     </script>    
   @endpush
-
 </x-app-layout>
