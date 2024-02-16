@@ -103,7 +103,7 @@
     <script type="text/javascript" src="{{ config('services.niubiz.url_js') }}"></script>
 
     <script type="text/javascript">
-      function openForm() {
+      document.addEventListener('DOMContentLoaded', function(event){
         VisanetCheckout.configure({
           sessiontoken: "{{ $niubiz_sessionToken }}",
           channel: 'web',
@@ -119,6 +119,9 @@
             alert(JSON.stringify(params));
           }
         });
+      })
+
+      function openForm() {
         VisanetCheckout.open();
       }
     </script>
