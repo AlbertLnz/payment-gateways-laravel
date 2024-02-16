@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Http;
 
 class PaidController extends Controller
 {
+    public $paymentController;
+
+    public function __construct(){
+        $this->paymentController = new PaymentGatewaysController();
+    }
+
     public function izipay(Request $request) {
 
         // REQUEST WITH 5 ITEMS --> kr-hash ; kr-hash-algorithm ; kr-answer-type ; kr-answer ; kr-hash-key
@@ -97,8 +103,10 @@ class PaidController extends Controller
     }
 
     public function paypal(Request $request) {
-        $accessToken = PaymentGatewaysController::paypal_generateAccessToken();
 
-        return $accessToken;
+        // Example route: http://laravel_payment_gateways.test/paid/paypal?amount=100
+        $order = $this->paymentController->paypal_generateOrder($request->amount);
+
+        return $order;
     }
 }

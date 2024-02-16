@@ -102,7 +102,7 @@ class PaymentGatewaysController extends Controller
         return $response['sessionKey'];
     }
 
-    public static function paypal_generateAccessToken() {
+    private function paypal_generateAccessToken() {
 
         $url = config('services.paypal.url');
         $clientId = config('services.paypal.client_id');
@@ -123,5 +123,32 @@ class PaymentGatewaysController extends Controller
         $accesToken = $response['access_token'];
 
         return $accesToken;
+    }
+    public function paypal_generateOrder($amount) {
+
+        $accessToken = $this->paypal_generateAccessToken();
+
+        $url = config('services.paypal.url');
+
+        $headers = [
+            'Content-Type' => 'application/json',
+            'Authorization' => "Bearer $accessToken",
+        ];
+
+        $body = [
+            'intent' => 'CAPTURE',
+            'purchase_units' => [
+                [
+                    'amount' => [
+                        'currency_code' => 'USD',
+                        'value' => $amount
+                    ]
+                ]
+            ]
+        ];
+
+        $response = Http::withHeaders($headers )->post($url.'/v2/checkout/orders', $body)->json();
+
+        return $response;
     }
 }
