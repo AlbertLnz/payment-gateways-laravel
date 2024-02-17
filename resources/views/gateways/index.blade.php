@@ -86,10 +86,6 @@
 
          <!-- PayU-->
         <li>
-          <button class="w-full flex justify-center bg-gray-200 py-2 rounded-lg shadow-lg">
-            <img class="h-8" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/PayU.svg/1200px-PayU.svg.png" alt="PayU logo">
-          </button>
-
           <form method="post" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">
             <input name="merchantId"      type="hidden"  value="{{ config('services.payu.merchant_id') }}" >
             <input name="accountId"       type="hidden"  value="{{ config('services.payu.account_id') }}" >
@@ -104,9 +100,10 @@
             <input name="buyerEmail"      type="hidden"  value="{{ auth()->user()->email }}" >
             <input name="responseUrl"     type="hidden"  value="http://www.test.com/response" >
             <input name="confirmationUrl" type="hidden"  value="http://www.test.com/confirmation" >
-            <input name="Submit"          type="submit"  value="Enviar" >
+            <button name="Submit" type="submit" value="Enviar" class="w-full flex justify-center bg-gray-200 py-2 rounded-lg shadow-lg">
+              <img class="h-8" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/PayU.svg/1200px-PayU.svg.png" alt="PayU logo">
+            </button>
           </form>
-          
         </li>
 
       </ul>
