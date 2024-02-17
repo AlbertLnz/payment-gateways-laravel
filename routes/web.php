@@ -50,6 +50,7 @@ Route::post('/paid/izipay', [PaidController::class, 'izipay'])->name('paid.izipa
 Route::post('/paid/niubiz', [PaidController::class, 'niubiz'])->name('paid.niubiz');
 Route::post('/paid/paypal', [PaidController::class, 'paypal'])->name('paid.paypal');
 Route::post('/paid/capture-paypal-order', [PaidController::class, 'capturePaypalOrder'])->name('paid.capturePaypalOrder');
+Route::post('/paid/payu', [PaidController::class, 'payu'])->name('paid.payu');
 
 // Route::middleware([
 //     'auth:sanctum',

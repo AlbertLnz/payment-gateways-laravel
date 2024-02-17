@@ -134,4 +134,31 @@ class PaidController extends Controller
             return $response;
         }
     }
+
+    public function payu(Request $request) {
+
+        $apiKey = config('services.payu.api_key');
+
+        // Página de confirmación: https://developers.payulatam.com/latam/es/docs/integrations/webcheckout-integration/confirmation-page.html
+        
+        $merchantId = $request->merchant_id;
+        $referenceSale = $request->reference_sale;
+        $value = $request->value;
+        $currency = $request->currency;
+        $statePol = $request->state_pol;
+
+        $newValue = number_format($value, 1, '.', ''); // newValue same as '$New_value' from '/thanks' page
+
+        $sign = md5($apiKey . '~' . $merchantId . '~' . $referenceSale . '~' . $newValue . '~' . $currency . '~' . $statePol);
+
+        // statePol codes: https://developers.payulatam.com/latam/es/docs/getting-started/response-codes-and-variables.html#response-codes-sent-to-the-confirmation-page
+        if ($sign === $request->sign) {
+            if ($statePol == 4) { // === Aprobada
+                dd('Tarjeta aceptada');
+            }
+            else if($statePol == 6) { // === Declinada
+                throw new Exception('Tarjeta declinada');
+            }
+        }
+    }
 }
