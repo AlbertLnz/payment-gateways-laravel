@@ -52,6 +52,12 @@ return [
         'url' => env('PAYPAL_URL'),
         'client_id' => env('PAYPAL_CLIENT_ID'),
         'secret' => env('PAYPAL_SECRET'),
+    ],
+
+    'payu' => [
+        'merchant_id' => env('PAYU_MERCHANT_ID'),
+        'account_id' => env('PAYU_ACCOUNT_ID'),
+        'api_key' => env('PAYU_API_KEY'),
     ]
 
 ];
