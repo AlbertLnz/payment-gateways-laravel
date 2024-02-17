@@ -169,7 +169,8 @@ class PaymentGatewaysController extends Controller
 
         return [
             'referenceCode' => $referenceCode,
-            'signature' => $signature
+            'signature' => $signature,
+            'amount' => $amount
         ];
     }
 }

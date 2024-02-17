@@ -89,6 +89,24 @@
           <button class="w-full flex justify-center bg-gray-200 py-2 rounded-lg shadow-lg">
             <img class="h-8" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/PayU.svg/1200px-PayU.svg.png" alt="PayU logo">
           </button>
+
+          <form method="post" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">
+            <input name="merchantId"      type="hidden"  value="{{ config('services.payu.merchant_id') }}" >
+            <input name="accountId"       type="hidden"  value="{{ config('services.payu.account_id') }}" >
+            <input name="description"     type="hidden"  value="Método de pago a través de PayU" >
+            <input name="referenceCode"   type="hidden"  value="{{ $payu_referenceCode_and_signature['referenceCode'] }}" >
+            <input name="amount"          type="hidden"  value="{{ $payu_referenceCode_and_signature['amount'] }}" >
+            <input name="tax"             type="hidden"  value="0"  > <!-- No tax -->
+            <input name="taxReturnBase"   type="hidden"  value="0" > <!-- No tax -->
+            <input name="currency"        type="hidden"  value="USD" >
+            <input name="signature"       type="hidden"  value="{{ $payu_referenceCode_and_signature['signature'] }}"  >
+            <input name="test"            type="hidden"  value="1" > <!-- 0: production / 1: test-->
+            <input name="buyerEmail"      type="hidden"  value="{{ auth()->user()->email }}" >
+            <input name="responseUrl"     type="hidden"  value="http://www.test.com/response" >
+            <input name="confirmationUrl" type="hidden"  value="http://www.test.com/confirmation" >
+            <input name="Submit"          type="submit"  value="Enviar" >
+          </form>
+          
         </li>
 
       </ul>
