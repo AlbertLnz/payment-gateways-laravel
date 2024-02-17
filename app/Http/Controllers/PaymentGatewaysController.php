@@ -17,7 +17,10 @@ class PaymentGatewaysController extends Controller
         // Niubiz
         $niubiz_sessionToken = $this->niubiz_generateSessionToken();
 
-        return view('gateways.index', compact('iziPay_formToken', 'niubiz_sessionToken'));
+        // PayU
+        $payu_referenceCode_and_signature = $this->payu_generateSignature();
+
+        return view('gateways.index', compact('iziPay_formToken', 'niubiz_sessionToken', 'payu_referenceCode_and_signature'));
     }
 
     private function izipay_generateFormToken() {
@@ -150,5 +153,23 @@ class PaymentGatewaysController extends Controller
         $response = Http::withHeaders($headers )->post($url.'/v2/checkout/orders', $body)->json();
 
         return $response;
+    }
+
+    public function payu_generateSignature() {
+
+        // DOCS: https://developers.payulatam.com/latam/es/docs/integrations/webcheckout-integration/payment-form.html
+
+        $apiKey = config('services.payu.api_key');
+        $merchantId = config('services.payu.merchant_id');
+        $referenceCode = Str::random(20);
+        $amount = 100;
+        $currency = 'USD';
+
+        $signature = md5($apiKey . '~' . $merchantId . '~' . $referenceCode . '~' . $amount . '~' . $currency);
+
+        return [
+            'referenceCode' => $referenceCode,
+            'signature' => $signature
+        ];
     }
 }
