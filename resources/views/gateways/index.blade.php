@@ -98,7 +98,7 @@
             <input name="signature"       type="hidden"  value="{{ $payu_referenceCode_and_signature['signature'] }}"  >
             <input name="test"            type="hidden"  value="1" > <!-- 0: production / 1: test-->
             <input name="buyerEmail"      type="hidden"  value="{{ auth()->user()->email }}" >
-            <input name="responseUrl"     type="hidden"  value="http://www.test.com/response" >
+            <input name="responseUrl"     type="hidden"  value="{{ route('thanks') }}?gateway=payu" > <!-- route: /thanks/gateway=payu-->
             <input name="confirmationUrl" type="hidden"  value="http://www.test.com/confirmation" >
             <button name="Submit" type="submit" value="Enviar" class="w-full flex justify-center bg-gray-200 py-2 rounded-lg shadow-lg">
               <img class="h-8" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/PayU.svg/1200px-PayU.svg.png" alt="PayU logo">
